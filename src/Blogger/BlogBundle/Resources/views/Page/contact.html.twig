@@ -2,10 +2,32 @@
 
 {% block title %}Conatact{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets
+            '@BloggerBlogBundle/Resources/public/css/contactForm.css'
+            filter="cssrewrite" %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+{% endblock %}
+
 {% block body %}
     <header>
         <h1>Conatact blog</h1>
     </header>
 
-<p>Want to contact blog?</p>
+    <p>Want to contact us?</p>
+
+    <form class="blogger" action="{{ path('BloggerBlogBundle_contact') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_errors(form) }}
+
+    {{ form_row(form.name) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.subject) }}
+    {{ form_row(form.body) }}
+
+    {{ form_rest(form) }}
+
+    <input type="submit">
+    </form>
 {% endblock %}

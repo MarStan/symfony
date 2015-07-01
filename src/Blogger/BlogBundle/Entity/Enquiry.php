@@ -2,18 +2,35 @@
 
 namespace Blogger\BlogBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * Class Enquiry
- * @author John Doe
+ * @author Marian Stanchuk
  */
 class Enquiry
 {
+    /**
+     * @Assert\NotBlank()
+     */
     protected $name;
 
+    /**
+     * @Assert\Email(
+     *  message = "Choose a valid email!1"
+     * )
+     */
     protected $email;
-
+    /**
+     * @Assert\NotBlank()
+     * @Assert\Length(max=50)
+     */
     protected $subject;
 
+    /**
+     * @Assert\NotBlank()
+     * @Assert\Length(min=10)
+     */
     protected $body;
 
     /**
